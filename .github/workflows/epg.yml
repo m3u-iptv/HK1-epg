@@ -1,0 +1,40 @@
+name: Grab JioTV EPG
+
+on:
+  schedule:
+    # रोज़ सुबह 6:00 AM IST पर अपने आप चलेगा
+    - cron: '30 0 * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  grab:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout my repo
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      - name: Clone iptv-org/epg
+        run: git clone --depth 1 -b master https://github.com epg-tool
+
+      - name: Install and Grab EPG
+        run: |
+          cd epg-tool
+          npm install
+          npm run grab --- --channels=../jio.channels.xml --output=../guide.xml --days=2 --maxConnections=5
+
+      - name: Save guide.xml to GitHub
+        run: |
+          git config user.name "github-actions"
+          git config user.email "github-actions@github.com"
+          git add -f guide.xml
+          git commit -m "Update JioTV EPG" || echo "No changes to commit"
+          git push origin main
+          
