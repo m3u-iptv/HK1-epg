@@ -21,13 +21,13 @@ jobs:
           node-version: '22'
 
       - name: Clone iptv-org/epg
-        run: git clone --depth 1 -b master https://github.com epg-tool
+        run: git clone --depth 1 -b master https://github.com/iptv-org/epg.git epg-tool
 
       - name: Install and Grab EPG
         run: |
           cd epg-tool
           npm install
-          npm run grab --- --channels=../dish.channels.xml --output=../guide.xml --days=2 --maxConnections=5
+          npm run grab --- --channels=../dish.channels.xml --output=../guide.xml --days=2
 
       - name: Save guide.xml to GitHub
         run: |
@@ -36,4 +36,5 @@ jobs:
           git add -f guide.xml
           git commit -m "Update D2H EPG" || echo "No changes to commit"
           git push origin main
+
           
