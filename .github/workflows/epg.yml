@@ -37,3 +37,4 @@ jobs:
           git add -f guide.xml
           git commit -m "Update DishTV EPG" || echo "No changes to commit"
           git push origin main
+          
