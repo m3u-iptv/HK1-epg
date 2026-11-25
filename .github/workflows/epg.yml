@@ -2,7 +2,6 @@ name: Grab D2H EPG
 
 on:
   schedule:
-    # रोज़ सुबह 6:00 AM IST पर चलेगा
     - cron: '30 0 * * *'
   workflow_dispatch:
 
