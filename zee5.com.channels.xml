@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<channels>
+  <channel site="zee5.com" lang="en" xmltv_id="ZeeTVCanada.ca@HD" site_id="0-9-channel_1017420475">Zee TV HD Canada</channel>
+  <channel site="zee5.com" lang="en" xmltv_id="ZeeTVUK.uk@HD" site_id="0-9-zeetvuk">Zee TV HD UK</channel>
+  <channel site="zee5.com" lang="en" xmltv_id="ZeeTVUSA.us@HD" site_id="0-9-channel_341994370">Zee TV HD USA</channel>
+  <channel site="zee5.com" lang="en" xmltv_id="ZeeTVMiddleEast.ae@SD" site_id="0-9-tvme">Zee TV ME</channel>
+  <channel site="zee5.com" lang="en" xmltv_id="ZeeTVUSA.us@SD" site_id="0-9-channel_1586895760">Zee TV USA</channel>
+</channels>
