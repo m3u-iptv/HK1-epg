@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<channels>
+  <channel site="aasthatv.com" lang="en" xmltv_id="Aastha.in@SD" site_id="0">aastha-india</channel>
+  <channel site="aasthatv.com" lang="en" xmltv_id="Aastha.in@UK" site_id="30">aastha-uk</channel>
+  <channel site="aasthatv.com" lang="en" xmltv_id="Aastha.in@US" site_id="61">aastha-usa-canada</channel>
+  <channel site="aasthatv.com" lang="en" xmltv_id="AasthaBhajan.in@SD" site_id="92">aastha-bhajan-india</channel>
+  <channel site="aasthatv.com" lang="en" xmltv_id="AasthaBhajan.in@US" site_id="123">aastha-bhajan-usa</channel>
+  <channel site="aasthatv.com" lang="en" xmltv_id="Vedic.in@SD" site_id="154">vedic-india</channel>
+</channels>
