@@ -1,7 +1,8 @@
-name: Grab DishTV EPG
+name: Grab DishTV EPG via Indian Proxy
 
 on:
   schedule:
+    # रोज़ सुबह 6:00 AM IST पर चलेगा
     - cron: '30 0 * * *'
   workflow_dispatch:
 
@@ -23,11 +24,22 @@ jobs:
       - name: Clone iptv-org/epg
         run: git clone --depth 1 -b master https://github.com epg-tool
 
-      - name: Install and Grab EPG
+      - name: Install dependencies
         run: |
           cd epg-tool
           npm install
-          npm run grab --- --channels=../dishtv.channels.xml --output=../guide.xml --days=2 --maxConnections=5
+
+      - name: Find Indian Proxy and Grab DishTV EPG
+        run: |
+          cd epg-tool
+          curl -s "https://proxyscrape.com" -o in_proxies.txt
+          PROXY=$(head -n 1 in_proxies.txt | tr -d '\r')
+          echo "Using Indian Proxy: $PROXY"
+          if [ -n "$PROXY" ]; then
+            npm run grab --- --channels=../dishtv.channels.xml --output=../guide.xml --days=2 --proxy="http://$PROXY" --timeout=30000 || npm run grab --- --channels=../dishtv.channels.xml --output=../guide.xml --days=2
+          else
+            npm run grab --- --channels=../dishtv.channels.xml --output=../guide.xml --days=2
+          fi
 
       - name: Save guide.xml to GitHub
         run: |
@@ -36,4 +48,3 @@ jobs:
           git add -f guide.xml
           git commit -m "Update DishTV EPG" || echo "No changes to commit"
           git push origin main
-          
